@@ -1,92 +1,104 @@
-import { useState } from "react";
-import Modal from "react-modal";
-import { Button } from "@mui/material";
-import "../Components/modal.module.css";
 
-export default function FormModel() {
-  let subtitle;
-  const [modalIsOpen, setIsOpen] = useState(false);
+import React, { useState } from "react";
+ import "./modal.module.css";
 
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function handlesubmit(e) {
+const User = ({ closeModal }) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (e.target.phoneNo.value.toString().length !== 10)
+    if (e.target.phone.value.toString().length !== 10)
       alert("Invalid phone number. Please enter a 10-digit phone number.");
     if(new Date(e.target.dob.value).getTime()>Date.now())
         alert("Invalid date of birth. Date of birth cannot be in future date");
     else{
       e.target.dob.value=" ";
-      e.target.phoneNo.value="";
+      e.target.phone.value="";
       e.target.email.value="";
       e.target.username.value=""
     }
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-  const customstyle = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      width: '400px',  
     
+  };
+
+  const handleOutsideClick = (event) => {
+    if (event.target.className === "modal") {
+      closeModal();
     }
-   
+  };
+
+  return (
+    <div className="modal" onClick={handleOutsideClick}>
+      <div className="modal-content">
+        <h2>Fill Details</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              required
+              className="input-field"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email Address:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              className="input-field"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="phone">Phone Number:</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              className="input-field"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="dob">Date of Birth:</label>
+            <input
+              type="date"
+              id="dob"
+              name="dob"
+              required
+              className="input-field"
+            />
+          </div>
+          <div className="form-group">
+            <button type="submit" className="submit-button">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default function FormModel () {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
   };
 
   return (
     <div>
-      <h2>User Details Modal</h2>
-      <button variant="contained" onClick={openModal}>
+      <h1>User Details Modal</h1>
+      <button onClick={openModal} className="submit-button">
         Open Form
       </button>
-      <div className="modal">
-      <div className="modal-content">
-      <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          contentLabel="Form Modal"
-          style={customstyle}
-        >
-          <h2>Fill Details</h2>
-
-          <form onSubmit={handlesubmit}>
-            <div>
-              <label htmlFor="username">Username:</label>
-              <input type="text" name="username" id="username" required />
-            </div>
-            <div>
-              <label htmlFor="email">Email Address:</label>
-              <input type="email" name="email" id="email" required />
-            </div>
-            <div>
-              <label htmlFor="phoneNo">Phone Number:</label>
-              <input type="number" name="phoneNo" id="phone" required />
-            </div>
-            <div>
-              <label htmlFor="dob">Date of Birth:</label>
-              <input type="Date" name="dob" id="dob" required />
-            </div>
-
-            <button variant="contained" type="submit">
-              Submit
-            </button>
-          </form>
-          </Modal>
-      </div>
-      </div>
-     
+      {isOpen && <User closeModal={closeModal} />}
     </div>
   );
-}
-
-
+};
 
