@@ -8,3 +8,11 @@
     left: 50%;
     transform: translate(-50%,-50%);
 }
+
+button{
+    background-color: #1976D2;
+    border: none;
+    padding: 5px;
+    color: white;
+    border-radius: 10%;
+}
