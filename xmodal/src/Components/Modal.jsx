@@ -6,7 +6,6 @@ import "../Components/modal.module.css";
 export default function FormModel() {
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [email, setEmail] = useState("");
 
   function openModal() {
     setIsOpen(true);
@@ -34,7 +33,7 @@ export default function FormModel() {
     <div>
       <h2>User Details Modal</h2>
       <button variant="contained" onClick={openModal}>
-        Open Modal
+        Open Form
       </button>
       <div className="modal">
       <div className="modal-content">
