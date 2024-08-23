@@ -36,13 +36,10 @@ export default function FormModel() {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
-      width: '400px',  // Adjust the width as needed
-      padding: '20px', // Adjust the padding as needed
-      borderRadius: '8px', // Add some border-radius for a softer look
-    },
-    overlay: {
-      backgroundColor: 'rgba(0, 0, 0, 0.5)', // Slightly darken the background
-    },
+      width: '400px',  
+    
+    }
+   
   };
 
   return (
@@ -75,7 +72,7 @@ export default function FormModel() {
               <input type="number" name="phoneNo" id="phone" required />
             </div>
             <div>
-              <label htmlFor="dob">Username:</label>
+              <label htmlFor="dob">Date of Birth:</label>
               <input type="Date" name="dob" id="dob" required />
             </div>
 
