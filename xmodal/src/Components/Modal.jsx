@@ -28,6 +28,22 @@ export default function FormModel() {
   function closeModal() {
     setIsOpen(false);
   }
+  const customstyle = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      width: '400px',  // Adjust the width as needed
+      padding: '20px', // Adjust the padding as needed
+      borderRadius: '8px', // Add some border-radius for a softer look
+    },
+    overlay: {
+      backgroundColor: 'rgba(0, 0, 0, 0.5)', // Slightly darken the background
+    },
+  };
 
   return (
     <div>
@@ -37,10 +53,11 @@ export default function FormModel() {
       </button>
       <div className="modal">
       <div className="modal-content">
-        <Modal
+      <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           contentLabel="Form Modal"
+          style={customstyle}
         >
           <h2>Fill Details</h2>
 
@@ -66,9 +83,13 @@ export default function FormModel() {
               Submit
             </button>
           </form>
-        </Modal>
+          </Modal>
       </div>
       </div>
+     
     </div>
   );
 }
+
+
+
