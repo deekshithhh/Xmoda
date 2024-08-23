@@ -31,11 +31,12 @@ export default function FormModel() {
   }
 
   return (
-    <div className="modal">
+    <div>
       <h2>User Details Modal</h2>
       <button variant="contained" onClick={openModal}>
         Open Modal
       </button>
+      <div className="modal">
       <div className="modal-content">
         <Modal
           isOpen={modalIsOpen}
@@ -67,6 +68,7 @@ export default function FormModel() {
             </button>
           </form>
         </Modal>
+      </div>
       </div>
     </div>
   );
