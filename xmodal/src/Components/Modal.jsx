@@ -12,7 +12,19 @@ export default function FormModel() {
     setIsOpen(true);
   }
 
-  function handlesubmit() {}
+  function handlesubmit(e) {
+    e.preventDefault();
+    if (e.target.phoneNo.value.toString().length !== 10)
+      alert("Invalid phone number. Please enter a 10-digit phone number.");
+    if(new Date(e.target.dob.value).getTime()>Date.now())
+        alert("Invalid date of birth. Date of birth cannot be in future date");
+    else{
+      e.target.dob.value=" ";
+      e.target.phoneNo.value="";
+      e.target.email.value="";
+      e.target.username.value=""
+    }
+  }
 
   function closeModal() {
     setIsOpen(false);
@@ -28,44 +40,26 @@ export default function FormModel() {
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
-          contentLabel="Example Modal"
+          contentLabel="Form Modal"
         >
           <h2>Fill Details</h2>
 
-          <form onClick={handlesubmit}>
-            <div style={{ display: "flex", flexDirection: "column", textAlign:'center' }}>
-          
-              <label>
-                Username:
-                <input type="text" id="username" required />
-              </label>
-              <label>
-                Email Address:
-                <input
-                  type="email"
-                  id="email"
-                  required
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </label>
-              <label>
-                Phone Number:
-                <input
-                  type="text"
-                  id="phone"
-                  pattern="[1-9]{1}[0-9]{9}"
-                  required
-                />
-              </label>
-              <label htmlFor="dob">
-                Date of Birth:
-                <input
-                  type="date"
-                  id="dob"
-                  max='DateTime.Now.ToString("yyyy-MM-dd")'
-                  required
-                />
-              </label>
+          <form onSubmit={handlesubmit}>
+            <div>
+              <label htmlFor="username">Username:</label>
+              <input type="text" name="username" id="username" required />
+            </div>
+            <div>
+              <label htmlFor="email">Email Address:</label>
+              <input type="email" name="email" id="email" required />
+            </div>
+            <div>
+              <label htmlFor="phoneNo">Phone Number:</label>
+              <input type="number" name="phoneNo" id="phone" required />
+            </div>
+            <div>
+              <label htmlFor="dob">Username:</label>
+              <input type="Date" name="dob" id="dob" required />
             </div>
 
             <button variant="contained" type="submit">
